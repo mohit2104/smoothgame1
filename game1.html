@@ -1,0 +1,45 @@
+<div id='snk'>
+<div style='height:8px;width:8px;background:red;position:absolute;top:200px;left:400px;' id='snake0'></div></div>
+<script src='mohit.js'></script><script>
+for(var i=1;i<=50;i++)
+{
+var y=document.createElement('div');
+y.id='snake'+i;
+var tmp=y.style;
+tmp.width='20px';tmp.height='2px';tmp.backgroundColor='red';tmp.position='absolute';tmp.top='0%';tmp.left='0%';
+document.getElementById('snk').appendChild(y); 
+}
+$(document).mousemove(function(e){ 
+$('#snake0').stop(true);
+xc=e.pageX;
+yc=e.pageY;
+//if(xc>512)
+//document.write('games over');
+         x(e.pageX,e.pageY);
+	 }); 		 
+function x(t,y)
+{
+
+$(document).ready(function(){
+$('#snake0').animate({left:t,top:y},10);
+for(var j=50;j>=1;j--)
+{
+var t1=j-1;
+document.getElementById('snake'+j).style.top=document.getElementById('snake'+t1).style.top;
+document.getElementById('snake'+j).style.left=document.getElementById('snake'+t1).style.left;
+if (j==50)
+ret();
+}
+});
+}
+var j;
+function ret()
+{ j=1; rot();}
+function rot()
+{ 
+var t2=document.getElementById('snake0').style.top;var t3=document.getElementById('snake0').style.left;
+document.getElementById('snake'+j).style.top=t2;
+document.getElementById('snake'+j).style.left=t3;j++;if(j<=50)setTimeout(rot,10);
+}
+	 
+</script>

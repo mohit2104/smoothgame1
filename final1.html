@@ -1,0 +1,161 @@
+<html>
+<head>
+<div style='height:100%;width:100%;cursor:crosshair'></div>
+<div id='bing' style='height:10px;width:10px;border-radius:50%;background:red;position:absolute;cursor:crosshair'></div>
+
+<script src='mohit.js'></script>
+<script>
+var xc=400;var yc=200;var l2;var l3;var spin=700;var lev=1;var rt=20;var ray=60;var q=3;var goi;var life=5;var save=0;
+$(document).mousemove(function(e){ 
+$('#bing').stop(true);
+xc=e.pageX;
+yc=e.pageY;
+//if(xc>512)
+//document.write('games over');
+         x(e.pageX,e.pageY);
+	 }); 		 
+function x(t,y)
+{
+
+$(document).ready(function(){
+$('#bing').animate({left:t,top:y},1);
+});
+}	
+var i=0;var sp1=6000;var sp2=7000;
+function createfood()
+{
+document.getElementById('score').innerHTML=" Score "+i*5;
+for(var vr=1;vr<q;vr++)
+{
+h1=Math.floor((Math.random()*1220));
+h2=Math.floor((Math.random()*486));
+h1=h1- (h1%20);
+h2=h2- (h2%20);
+var y=document.createElement('div');
+y.id='ball'+i;
+var tmp=y.style;
+tmp.width='20px';tmp.height='20px';tmp.backgroundColor='pink';tmp.position='absolute';tmp.top=h2+'px';tmp.left='0%';tmp.borderRadius='50%';
+if(i%15==0)
+{tmp.backgroundColor='blue';y.innerHTML='L';tmp.color='white';tmp.textAlign='center';}
+if(i%29==0)
+{tmp.backgroundColor='green';y.innerHTML='S';tmp.color='white';tmp.textAlign='center';}
+document.getElementById('ball').appendChild(y); 
+jh=0;
+
+i++;
+var y=document.createElement('div');
+y.id='ball'+i;
+var tmp=y.style;
+tmp.width='20px';tmp.height='20px';tmp.borderRadius='50%';tmp.backgroundColor='pink';tmp.position='absolute';tmp.top='0px';tmp.left=h1+'px';
+if(i%15==0)
+{tmp.backgroundColor='blue';y.innerHTML='L';tmp.color='white';tmp.textAlign='center';}
+if(i%29==0)
+{tmp.backgroundColor='green';y.innerHTML='S';tmp.color='white';tmp.textAlign='center';}
+document.getElementById('ball').appendChild(y); 
+i++;
+}
+}
+</script>
+</head>
+<body>
+<div id='ball' style='position:absolute;top:0%;width:100%;height:100%;overflow:hidden;cursor:crosshair'></div>
+<script>
+function seti()
+{
+l=setInterval(createfood,spin);
+}
+seti();
+
+function raise()
+{
+lev++;var ltr=lev-1;
+document.getElementById(''+lev).style.backgroundColor='rgb(213,123,123)';
+document.getElementById(''+ltr).style.backgroundColor='rgba(0,112,0,0.5)';
+if(lev<10)
+{
+rt=rt+5;
+ray=ray-3;
+}
+clearInterval(goi);
+go();
+clearInterval(l);
+if(spin>100)
+spin=spin-75;
+seti();
+}
+function setm()
+{
+var l=setInterval(raise,7050);
+}
+setm();
+
+function rate()
+{
+if(i<=20)
+var lv=0;else lv=i-rt;
+for(var jh=lv;jh<(lv+rt);jh++)
+{
+if(jh%2==0)
+{ 
+var lp=parseFloat(document.getElementById('ball'+jh).style.left)+20;var lt=parseFloat(document.getElementById('ball'+jh).style.top)+20;
+document.getElementById('ball'+jh).style.left=lp+'px';document.getElementById('ball'+jh).style.top=lt+'px';}
+else
+{
+var lt=parseFloat(document.getElementById('ball'+jh).style.top)+20;var lp=parseFloat(document.getElementById('ball'+jh).style.left)+20;
+document.getElementById('ball'+jh).style.top=lt+'px';document.getElementById('ball'+jh).style.left=lp+'px';}
+if((xc-lp)<25&&(xc-lp)>0&&(yc-lt)<25&&(yc-lt)>0)
+{
+
+$('#ball'+jh).animate({opacity:'0'},1000);
+if(jh%29==0)
+{
+save=1;
+//$(document).ready(function(){$('#bing').animate({width:'80px',height:'80px'},500); });
+$(document).ready(function(){$('#bing').animate({width:'80px',height:'80px'},400); });
+setTimeout(change,6000);
+}
+if(jh%15==0)
+{
+document.getElementById('eat').play();
+life++;
+document.getElementById('life1').innerHTML='Life Left :'+life;}
+else
+{
+if(save==0)
+{
+document.getElementById('eat').play();
+if(life>0)
+{ life--;
+document.getElementById('life1').innerHTML='Life Left :'+life;}
+else
+alert('game over');
+}}}}}
+
+function go()
+{
+goi=setInterval(rate,ray);}go();
+function change()
+{
+save=0;
+//$('#bing').animate({width:'10px',height:'10px'},40);
+$(document).ready(function(){$('#bing').animate({width:'10px',height:'10px'},80); });
+}
+</script>
+<div  style='padding:5px;font-family:cursive;position:absolute;top:0%;right:0%;font-size:28px;' id='life1'>Life left: 5</div>
+<div style='position:absolute;top:92%;left:20%'>
+<span  style='padding:5px;font-family:cursive;font-size:28px;'>level :</span> 
+<span style='padding:10px;background:rgb(213,123,123);font-family:cursive;font-size:22px;border:2px solid rgb(213,213,213);' id='1'>1</span>
+<span style='padding:10px;background:rgba(0,112,0,0.5);font-family:cursive;font-size:22px;border:2px solid rgb(213,213,213);' id='2'>2</span>
+<span style='padding:10px;background:rgba(0,112,0,0.5);font-family:cursive;font-size:22px;border:2px solid rgb(213,213,213);' id='3'>3</span>
+<span style='padding:10px;background:rgba(0,112,0,0.5);font-family:cursive;font-size:22px;border:2px solid rgb(213,213,213);' id='4'>4</span>
+<span style='padding:10px;background:rgba(0,112,0,0.5);font-family:cursive;font-size:22px;border:2px solid rgb(213,213,213);' id='5'>5</span>
+<span style='padding:10px;background:rgba(0,112,0,0.5);font-family:cursive;font-size:22px;border:2px solid rgb(213,213,213);' id='6'>6</span>
+<span style='padding:10px;background:rgba(0,112,0,0.5);font-family:cursive;font-size:22px;border:2px solid rgb(213,213,213);' id='7'>7</span>
+<span style='padding:10px;background:rgba(0,112,0,0.5);font-family:cursive;font-size:22px;border:2px solid rgb(213,213,213);' id='8'>8</span>
+<span style='padding:10px;background:rgba(0,112,0,0.5);font-family:cursive;font-size:22px;border:2px solid rgb(213,213,213);' id='9'>9</span>
+<span style='padding:10px;background:rgba(0,112,0,0.5);font-family:cursive;font-size:22px;border:2px solid rgb(213,213,213);' id='10'>10</span>
+<span  style='padding:5px;font-family:cursive;font-size:28px;' id='score'> </span>
+</div>
+<audio src='eat.mp3' id='eat'>
+</body>
+</html>

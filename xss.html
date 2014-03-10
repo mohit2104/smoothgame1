@@ -1,0 +1,20 @@
+<script src='mohit.js'></script>
+<script>var active='off';
+var move=[[2,0],[2,3],[3,3],[3,5],[5,5]];
+</script>
+<div id='boy' style='background:yellow;border-radius:50;width:50px;height:50px;position:relative;left:0px;top:0px'></div>
+<script>
+var height=100; var width=100;
+function move_forward()
+{
+        if(active=='on')
+           {
+for(i=0;i<5;i++)
+{
+$('#boy').animate({left:move[i][1]*width+'px',top:move[i][0]*height+'px'},1000);
+}}}
+
+</script>
+
+
+<script>active='on' ; move_forward(); </script>

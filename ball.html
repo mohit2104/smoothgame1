@@ -1,0 +1,83 @@
+<html>
+<head>
+<div id='bing' style='height:10px;width:10px;border-radius:50%;background:red;position:absolute;'></div>
+<script src='mohit.js'></script>
+<script>
+var xc;var yc;var l2;var l3;
+$(document).mousemove(function(e){ 
+$('#bing').stop(true);
+xc=e.pageX;
+yc=e.pageY;
+//if(xc>512)
+//document.write('games over');
+         x(e.pageX,e.pageY);
+	 }); 		 
+function x(t,y)
+{
+
+$(document).ready(function(){
+$('#bing').animate({left:t,top:y},10);
+});
+}	
+var i=0;var sp1=6000;var sp2=7000;
+function createfood()
+{
+h1=Math.floor((Math.random()*1020)+160);
+h2=Math.floor((Math.random()*386)+124);
+h1=h1- (h1%8);
+h2=h2- (h2%8);
+var y=document.createElement('div');
+y.id='ball'+i;
+var tmp=y.style;
+tmp.width='20px';tmp.height='20px';tmp.backgroundColor='pink';tmp.position='absolute';tmp.top=h2+'px';tmp.left='0%';tmp.borderRadius='50%';
+document.getElementById('ball').appendChild(y); 
+$('#ball'+i).animate({left:'80%'},sp1);i++;
+var y=document.createElement('div');
+y.id='ball'+i;
+var tmp=y.style;
+tmp.width='20px';tmp.height='20px';tmp.borderRadius='50%';tmp.backgroundColor='pink';tmp.position='absolute';tmp.top='0px';tmp.left=h1+'px';
+document.getElementById('ball').appendChild(y); 
+$('#ball'+i).animate({top:'80%'},sp2);i++;
+if(i==19)
+i=0;
+}
+</script>
+</head>
+<body>
+<div id='ball'></div>
+<script>
+function seti()
+{
+l=setInterval(createfood,sp2/10);
+}
+seti();
+function seto()
+{
+l2=setInterval(level,5000);
+}
+seto();
+
+function level()
+{
+sp1=sp1-200;
+sp2=sp2-200;
+}
+function collision()
+{
+for(var i=0;i<20;i++)
+{
+var k1=document.getElementById('ball'+i).style.left;
+var k2=document.getElementById('ball'+i).style.top;
+if((xc-k1)<20&&(yc-k2)<20&&(xc-k1)>0&&(yc-k2)>0)
+document.write('games over');
+}}
+function setn()
+{
+l3=setInterval(collision,1);
+}
+setn();
+
+
+</script>
+</body>
+</html>

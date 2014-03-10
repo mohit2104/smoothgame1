@@ -1,0 +1,28 @@
+
+5 days task -mini project
+
+create div -
+              create button
+			  create div 
+			               create input name 
+						   create city type
+						   create actions button
+						   
+						   
+edge handling
+type of road-permanent , temporary
+
+zooming function for better implementation
+
+limit of zomming.
+
+canvas at background for collosion testing
+
+proper grid system
+
+background image upload for convinience for creating a map
+
+storage operations- can be done in backend. the sequence of entry has to be passed to the back end;
+
+
+						           

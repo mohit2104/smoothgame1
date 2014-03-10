@@ -1,0 +1,93 @@
+<script src='mohit.js'></script>
+<script>
+var x=0;var i=0;var x1,x2,y1,y2,y=0;
+$(document).mousemove(function(e){ 
+document.getElementById("co_ordinates").innerHTML=e.pageX+" "+e.pageY;
+         //x(e.pageX,e.pageY);
+	 }); 		 
+	function line(obj){
+	 if(x==1)
+	 {
+	 if(y==0)
+	 {
+	// alert("hey");
+	x1=parseFloat(obj.style.left);
+	 y1=parseFloat(obj.style.top);
+	// alert(x1);
+	 y=1;
+	 }
+	 else
+	 {
+	 x2=parseFloat(obj.style.left);
+	 y2=parseFloat(obj.style.top);
+draw();
+	 }}
+	 }
+	 
+	 
+	$(document).click(function(e){ 
+if(x==0)
+{
+	var y=document.createElement('button');
+y.id='button'+i;i++;
+y.className='butt';
+y.onclick=function(){ line(this); };
+var tmp=y.style;
+tmp.width='20px';tmp.height='20px';tmp.borderRadius='50%';tmp.position='absolute';tmp.top=e.pageY-10+'px';tmp.left=e.pageX-10+'px';tmp.backgroundColor="#419641";
+y.innerHTML='node 1';
+
+document.getElementById('main').appendChild(y); 
+	
+	
+	document.getElementById("test").innerHTML="sucess "+e.pageX+" "+e.pageY; 
+	
+	}
+	});
+	$(document).bind('keypress', function(e) {
+	var code = e.keyCode || e.which;
+	//alert(code);
+ if(code == 97) { 
+   x=1;
+ }
+ if(code == 115) { x=0; y=0; }
+ });
+ 
+ function draw()
+ {
+
+var context=document.getElementById('canvas').getContext('2d');
+context.lineJoin  = 'round';
+      context.lineCap  = 'round';
+	  context.lineWidth=5;
+	  context.fillStyle = "rgba(40,100,200,0.6)";
+  context.font = "bold 16px Cursive";
+  
+ context.beginPath();
+	  context.moveTo(x1+10,y1+10);
+   
+		var r=Math.floor(Math.random()*230);
+	var r1=Math.floor(Math.random()*230);
+	var r2=Math.floor(Math.random()*230);
+	context.strokeStyle = 'rgba('+r+','+r1+','+r2+',0.7)';
+      context.lineTo(x2+10,y2+10);
+	  context.stroke();
+      context.closePath();
+	}
+
+	 </script>
+	 <style>
+	 div{
+	 color:red;}
+	 button:hover
+	 {
+	 color:black;
+	 width:'100px'; height:'40px';}
+	 </style>
+	 <body>
+	 <canvas id='canvas' width=1365 height=665 style='position:absolute;right:0%;top:0%;'></canvas>
+
+	 <div id='main'>
+	 <div id='co_ordinates'></div>
+	 <div id='test'></div>
+	 </div>
+	 </body>
